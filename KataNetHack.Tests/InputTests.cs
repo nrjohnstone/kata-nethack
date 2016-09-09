@@ -46,7 +46,7 @@ namespace KataNetHack.Tests
 
     public class Input
     {
-        public Func<ConsoleKeyInfo> ReadKey = () => Console.ReadKey();
+        public Func<ConsoleKeyInfo> ReadKey = () => System.Console.ReadKey();
 
         public InputResult GetInput()
         {
