@@ -6,23 +6,34 @@ namespace KataNetHack.Console.Input
     {
         public Func<ConsoleKeyInfo> ReadKey = () => System.Console.ReadKey();
 
-        public InputResult GetInput()
+        public event Action<InputResult> InputReceived;
+
+        public void PollForInput()
         {
+            InputResult inputReceived;
             var key = ReadKey();
 
-            switch(key.Key)
+            switch (key.Key)
             {
                 case ConsoleKey.W:
-                    return InputResult.Up;
+                    inputReceived = InputResult.Up;
+                    break;
                 case ConsoleKey.A:
-                    return InputResult.Left;
+                    inputReceived = InputResult.Left;
+                    break;
                 case ConsoleKey.S:
-                    return InputResult.Down;
+                    inputReceived = InputResult.Down;
+                    break;
                 case ConsoleKey.D:
-                    return InputResult.Right;
+                    inputReceived = InputResult.Right;
+                    break;
                 default:
-                    return InputResult.Invalid;
+                    inputReceived = InputResult.Invalid;
+                    break;
             }
+
+            if (inputReceived != InputResult.Invalid)
+                InputReceived.Invoke(inputReceived);
         }
     }
 }

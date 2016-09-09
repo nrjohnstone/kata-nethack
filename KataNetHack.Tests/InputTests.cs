@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 
 using FluentAssertions;
 
@@ -15,34 +16,28 @@ namespace KataNetHack.Tests
         [InlineData(ConsoleKey.A, InputResult.Left)]
         [InlineData(ConsoleKey.S, InputResult.Down)]
         [InlineData(ConsoleKey.D, InputResult.Right)]
-        public void GetInput_ValidInput_ReturnsExpectedResult(ConsoleKey key, InputResult expectedResult)
+        public void PollForInput_ValidInput_FireEvent(ConsoleKey key, InputResult expectedResult)
         {
             Input sut = new Input();
-            AssertInputReturns(key, expectedResult, sut);
+            sut.ReadKey = () => new ConsoleKeyInfo(key.ToString()[0], key, false, false, false);
+
+            sut.MonitorEvents();
+
+            sut.PollForInput();
+            var eventMonitored = sut.ShouldRaise(nameof(Input.InputReceived));
+            eventMonitored.First().Parameters.First().Should().Be(expectedResult);
         }
 
         [Fact]
-        public void GetInput_InvalidInput_ReturnsInvalid()
+        public void PollForInput_InvalidInput_DoesNotFireEvent()
         {
             Input sut = new Input();
-            sut.ReadKey = () => GetInvalidKeyInput();
-            InputResult result =  sut.GetInput();
+            sut.ReadKey = () => new ConsoleKeyInfo('Q', ConsoleKey.Q, false, false, false );
 
-            result.Should().Be(InputResult.Invalid);
-        }
+            sut.MonitorEvents();
 
-        private void AssertInputReturns(ConsoleKey key, InputResult expectedResult, Input sut)
-        {
-            sut.ReadKey = () => new ConsoleKeyInfo(key.ToString()[0], key, false, false, false);
-
-            InputResult result = sut.GetInput();
-
-            result.Should().Be(expectedResult);
-        }
-
-        private ConsoleKeyInfo GetInvalidKeyInput()
-        {
-            return new ConsoleKeyInfo('Q', ConsoleKey.Q, false, false, false );
+            sut.PollForInput();
+            sut.ShouldNotRaise(nameof(Input.InputReceived));
         }
     }
 }
