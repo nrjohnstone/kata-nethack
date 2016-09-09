@@ -10,6 +10,7 @@ namespace KataNetHack.Console
     {
         static void Main(string[] args)
         {
+            Input.Input input = new Input.Input();
         }
     }
 }
