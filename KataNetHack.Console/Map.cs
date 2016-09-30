@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace KataNetHack.Console
 {
@@ -31,10 +32,19 @@ namespace KataNetHack.Console
             }
         }
 
+        public Element ElementAt(int x, int y)
+        {
+            return Elements.First();
+        }
     }
 
     public class Element
     {
-        //type, x, y
+        public ElementType Type { get; set; }
+    }
+
+    public enum ElementType
+    {
+        Wall, PassageWay, Exit
     }
 }
