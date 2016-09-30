@@ -4,7 +4,7 @@ namespace KataNetHack.Console.Input
 {
     public class Input
     {
-        public Func<ConsoleKeyInfo> ReadKey = () => System.Console.ReadKey();
+        public Func<ConsoleKeyInfo> ReadKey = () => System.Console.ReadKey(intercept:true);
 
         public event Action<InputResult> InputReceived;
 
