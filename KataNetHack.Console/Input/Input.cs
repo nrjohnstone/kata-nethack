@@ -13,7 +13,7 @@ namespace KataNetHack.Console.Input
             InputResult inputReceived;
             var key = ReadKey();
 
-            switch (key.Key)
+            switch(key.Key)
             {
                 case ConsoleKey.W:
                     inputReceived = InputResult.Up;
@@ -32,7 +32,7 @@ namespace KataNetHack.Console.Input
                     break;
             }
 
-            if (inputReceived != InputResult.Invalid)
+            if(inputReceived != InputResult.Invalid)
                 InputReceived?.Invoke(inputReceived);
         }
     }
