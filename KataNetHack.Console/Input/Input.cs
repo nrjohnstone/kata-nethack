@@ -33,7 +33,7 @@ namespace KataNetHack.Console.Input
             }
 
             if (inputReceived != InputResult.Invalid)
-                InputReceived.Invoke(inputReceived);
+                InputReceived?.Invoke(inputReceived);
         }
     }
 }
