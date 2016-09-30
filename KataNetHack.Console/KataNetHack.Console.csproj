@@ -44,6 +44,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Input\IInput.cs" />
+    <Compile Include="Input\IInputPoller.cs" />
     <Compile Include="Map.cs" />
     <Compile Include="Input\Input.cs" />
     <Compile Include="Input\InputResult.cs" />

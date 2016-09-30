@@ -2,7 +2,7 @@
 
 namespace KataNetHack.Console.Input
 {
-    public class Input
+    public class Input : IInput, IInputPoller
     {
         public Func<ConsoleKeyInfo> ReadKey = () => System.Console.ReadKey(intercept:true);
 
