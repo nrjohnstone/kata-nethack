@@ -39,5 +39,16 @@ namespace KataNetHack.Tests
             sut.PollForInput();
             sut.ShouldNotRaise(nameof(Input.InputReceived));
         }
+
+        [Fact]
+        public void PollForInput_NoEventHandler_DoesNotThrow()
+        {
+            Input sut = new Input();
+            sut.ReadKey = () => new ConsoleKeyInfo('W', ConsoleKey.W, false, false, false);
+
+            Action pollWhenNoEventSubscription = ()=>sut.PollForInput();
+
+            pollWhenNoEventSubscription.ShouldNotThrow();
+        }
     }
 }

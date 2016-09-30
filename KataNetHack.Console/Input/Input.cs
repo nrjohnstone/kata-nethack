@@ -2,9 +2,9 @@
 
 namespace KataNetHack.Console.Input
 {
-    public class Input
+    public class Input : IInput, IInputPoller
     {
-        public Func<ConsoleKeyInfo> ReadKey = () => System.Console.ReadKey();
+        public Func<ConsoleKeyInfo> ReadKey = () => System.Console.ReadKey(intercept:true);
 
         public event Action<InputResult> InputReceived;
 
@@ -13,7 +13,7 @@ namespace KataNetHack.Console.Input
             InputResult inputReceived;
             var key = ReadKey();
 
-            switch (key.Key)
+            switch(key.Key)
             {
                 case ConsoleKey.W:
                     inputReceived = InputResult.Up;
@@ -32,8 +32,8 @@ namespace KataNetHack.Console.Input
                     break;
             }
 
-            if (inputReceived != InputResult.Invalid)
-                InputReceived.Invoke(inputReceived);
+            if(inputReceived != InputResult.Invalid)
+                InputReceived?.Invoke(inputReceived);
         }
     }
 }
