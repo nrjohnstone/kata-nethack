@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using FluentAssertions;
 using KataNetHack.Console;
 using Xunit;
@@ -8,49 +9,55 @@ namespace KataNetHack.Tests
 
     public class MapTests
     {
-        [Fact]
-        public void Create_OnMapFactory_ReturnsMap()
+        private static Map Sut(int width, int height)
         {
-            var sut = Map.Create(0, 0);
-            Assert.IsType<Map>(sut);
+            var items = new StageItemBuilder().WithWidth(width).WithHeight(height).Build();
+
+            var sut = Map.Create(items, width, height) as Map;
+            return sut;
         }
 
         [Fact]
-        public void Elements_OnMap_Returns100Elements()
+        public void Create_OnMapFactory_ReturnsMap()
         {
-            var sut = Map.Create(10, 10);
-            var elements = sut.Elements;
-            Assert.Equal(100, elements.Count());
+            var sut = Map.Create(new List<char>(), 0, 0) as Map;
+            Assert.IsType<Map>(sut);
         }
 
         [Fact]
         public void Width_OnMapWith10Width_Returns10()
         {
-            var sut = Map.Create(10, 0);
+            var sut = Sut(10, 1);
+
             Assert.Equal(10, sut.Width);
         }
 
         [Fact]
         public void Height_OnMapWith10Height_Returns10()
         {
-            var sut = Map.Create(0, 10);
+            var sut = Sut(1, 10);
+
             Assert.Equal(10, sut.Height);
         }
 
         [Fact]
-        public void Coordinate_0And0_IsAWall()
+        public void Coordinate_1And1_IsAWall()
         {
-            var sut = Map.Create(10, 10);
-            var corner = sut.ElementAt(0, 0); 
-            Assert.Equal(corner.Type, ElementType.Wall);
+            var items = new StageItemBuilder().Build();
+            var sut = Map.Create(items, 10, 10) as Map;
+
+            var corner = sut.ElementAt(1, 1); 
+
+            Assert.Equal(ElementType.Wall, corner.Type);
         }
 
         [Fact]
         public void CanMoveTo_AWallOnA10X10Map_ShouldReturnFalse_()
         {
-            var sut = Map.Create(10, 10);
+            var items = new StageItemBuilder().Build();
+            var sut = Map.Create(items, 10, 10);
 
-            var result = sut.CanMoveTo(0, 0);
+            var result = sut.CanMoveTo(1, 1);
 
             result.Should().BeFalse();
         }
@@ -59,9 +66,9 @@ namespace KataNetHack.Tests
         [Fact]
         public void CanMoveTo_OverAValidCoordinateOnA10X10Map_ShouldReturnTrue()
         {
-            var sut = Map.Create(10, 10);
+            var sut = Sut(10, 10);
 
-            var result = sut.CanMoveTo(1, 1);
+            var result = sut.CanMoveTo(2, 2);
 
             result.Should().BeTrue();
         }
@@ -70,7 +77,7 @@ namespace KataNetHack.Tests
         [Fact]
         public void CanMoveTo_OverAnotherValidCoordinateOnA10X10Map_ShouldReturnTrue()
         {
-            var sut = Map.Create(10, 10);
+            var sut = Sut(10, 10);
 
             var result = sut.CanMoveTo(4, 5);
 
@@ -81,7 +88,7 @@ namespace KataNetHack.Tests
         [Fact]
         public void CanMoveTo_OverYetAnotherValidCoordinateOnA10X10Map_ShouldReturnTrue()
         {
-            var sut = Map.Create(10, 10);
+            var sut = Sut(10, 10);
 
             var result = sut.CanMoveTo(9, 7);
 
@@ -92,9 +99,9 @@ namespace KataNetHack.Tests
         [Fact]
         public void CanMoveTo_OverExitOnA10X10Map_ShouldReturnTrue()
         {
-            var sut = Map.Create(10, 10);
+            var sut = Sut(10, 10);
 
-            var result = sut.CanMoveTo(10, 10);
+            var result = sut.CanMoveTo(9, 9);
 
             result.Should().BeTrue();
         }
@@ -102,9 +109,9 @@ namespace KataNetHack.Tests
         [Fact]
         public void IsExit_OnAWall_IsFalse()
         {
-            var sut = Map.Create(10, 10);
+            var sut = Sut(10, 10);
 
-            var result = sut.IsExit(0, 0);
+            var result = sut.IsExit(1, 1);
 
             result.Should().BeFalse();
         }
@@ -112,7 +119,7 @@ namespace KataNetHack.Tests
         [Fact]
         public void IsExit_OnAPassageWay_IsFalse()
         {
-            var sut = Map.Create(10, 10);
+            var sut = Sut(10, 10);
 
             var result = sut.IsExit(1, 1);
 
@@ -123,9 +130,9 @@ namespace KataNetHack.Tests
         [Fact]
         public void IsExit_OnAnExit_IsTrue()
         {
-            var sut = Map.Create(10, 10);
+            var sut = Sut(10, 10);
 
-            var result = sut.IsExit(10, 10);
+            var result = sut.IsExit(9, 9);
 
             result.Should().BeTrue();
         }
@@ -134,9 +141,9 @@ namespace KataNetHack.Tests
         [Fact]
         public void GetElementType_OnAWall_ReturnsWall()
         {
-            var sut = Map.Create(10, 10);
+            var sut = Sut(10, 10);
 
-            var result = sut.GetElementType(0, 0);
+            var result = sut.GetElementType(1, 1);
 
             result.Should().Be(ElementType.Wall);
         }
@@ -145,8 +152,8 @@ namespace KataNetHack.Tests
         [Fact]
         public void GetElementType_OnAPassageWay_ReturnsPassageWay()
         {
-            var sut = Map.Create(10, 10);
-
+            var sut = Sut(10, 10);
+            var pic = sut.ToString();
             var result = sut.GetElementType(5, 5);
 
             result.Should().Be(ElementType.PassageWay);

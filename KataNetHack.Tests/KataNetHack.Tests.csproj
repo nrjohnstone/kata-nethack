@@ -84,8 +84,11 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="ListMatrixTests.cs" />
     <Compile Include="MapTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StageItemBuilder.cs" />
+    <Compile Include="StageTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="InputTests.cs" />
