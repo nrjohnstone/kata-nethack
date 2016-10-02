@@ -89,6 +89,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StageItemBuilder.cs" />
     <Compile Include="StageTests.cs" />
+    <Compile Include="RendererTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="InputTests.cs" />
