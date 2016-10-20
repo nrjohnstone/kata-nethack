@@ -40,3 +40,10 @@ private readonly string _mapDescriptor =
 ### Map
 
 Under the hood is implemented as a single list. This is particularly easy then for reading in as characters and avoids multi-dimensional arrays. It does require a bit more maths than representing a grid using arrays.
+
+```csharp
+public enum ElementType
+{
+  Wall, PassageWay, Exit
+}
+```
