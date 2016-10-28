@@ -21,6 +21,7 @@ namespace KataNetHack.Tests
             _input = new InputDouble();
             var map = new Stage1().LoadMap();
             _renderer = new Renderer(map);
+            _renderer.ClearScreen = () => { };
             _player = new Player(5, 5);
 
             _engine = new GameEngine(_input, _player, _renderer, map);
