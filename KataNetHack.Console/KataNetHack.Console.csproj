@@ -44,6 +44,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GameEngine.cs" />
     <Compile Include="Input\IInput.cs" />
     <Compile Include="Input\IInputPoller.cs" />
     <Compile Include="Maps\ListMatrix.cs" />
