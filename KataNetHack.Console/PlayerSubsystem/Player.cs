@@ -11,19 +11,22 @@
         
         public void MovedNorth()
         {
-            Location.Y += 1;
+            --Location.Y;
         }
 
         public void MovedSouth()
         {
+            ++Location.Y;
         }
 
         public void MovedWest()
         {
+            --Location.X;
         }
 
         public void MovedEast()
         {
+            ++Location.X;
         }
     }
 }
