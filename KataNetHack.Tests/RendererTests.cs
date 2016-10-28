@@ -153,6 +153,24 @@ namespace KataNetHack.Tests
             builder.OutputLines[1].Should().Be(leftPassageWay + representation + rightPassageWay);
         }
 
+        [Fact]
+        public void Render_Always_ClearsScreenBeforeRendering()
+        {
+            var builder = new RendererBuilder();
+            bool clearScreenCalled = false;
+
+            var sut = builder.WhenClearingScreenDo(() =>
+                                                   {
+                                                       builder.OutputLines.Should().BeEmpty("ClearScreen should be called first");
+                                                       clearScreenCalled = true;
+                                                   })
+                             .Build();
+
+            sut.Render(NoRenderables());
+
+            clearScreenCalled.Should().BeTrue();
+        }
+
         private Renderable CreateRenderable(int x, int y, char representation, int zindex) =>
             new Renderable(new FakeHaveLocation(x, y), representation, zindex);
 

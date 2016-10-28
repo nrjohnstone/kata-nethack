@@ -16,6 +16,7 @@ namespace KataNetHack.Console.Renderer
         private readonly IMap _map;
 
         public Action<string> WriteLine = System.Console.WriteLine;
+        public Action ClearScreen = System.Console.Clear;
 
         public Renderer(IMap map)
         {
@@ -24,6 +25,8 @@ namespace KataNetHack.Console.Renderer
 
         public void Render(IEnumerable<Renderable> items)
         {
+            ClearScreen();
+
             for(int row = 1; row <= MAP_ROW_COUNT; row++)
             {
                 var builder = new StringBuilder();
