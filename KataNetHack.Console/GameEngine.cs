@@ -25,6 +25,15 @@ namespace KataNetHack.Console
                 case InputResult.Up:
                     _player.MovedNorth();
                     break;
+                case InputResult.Down:
+                    _player.MovedSouth();
+                    break;
+                case InputResult.Left:
+                    _player.MovedWest();
+                    break;
+                case InputResult.Right:
+                    _player.MovedEast();
+                    break;
                 default:
                     break;
             }
