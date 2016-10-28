@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace KataNetHack.Console.Renderer
@@ -20,7 +22,7 @@ namespace KataNetHack.Console.Renderer
             _map = map;
         }
 
-        public void Render()
+        public void Render(IEnumerable<Renderable> items)
         {
             for(int row = 1; row <= MAP_ROW_COUNT; row++)
             {
@@ -38,7 +40,18 @@ namespace KataNetHack.Console.Renderer
                     }
                     else
                     {
-                        builder.Append(PASSAGEWAY_CHARACTER);
+                        var item = items.OrderByDescending(i => i.ZIndex)
+                                        .FirstOrDefault(i => i.Source.Location.X == column &&
+                                                             i.Source.Location.Y == row);
+
+                        if(item != null)
+                        {
+                            builder.Append(item.Representation);
+                        }
+                        else
+                        {
+                            builder.Append(PASSAGEWAY_CHARACTER);
+                        }
                     }
                 }
 
