@@ -38,7 +38,7 @@ namespace KataNetHack.Console
                     break;
             }
 
-            _renderer.Render();
+            _renderer.Render(new Renderable[0]);
         }
     }
 }
