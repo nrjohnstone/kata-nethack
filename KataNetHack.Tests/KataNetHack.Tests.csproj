@@ -91,6 +91,7 @@
     <Compile Include="ListMatrixTests.cs" />
     <Compile Include="MapTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RenderableFactoryTests.cs" />
     <Compile Include="StageItemBuilder.cs" />
     <Compile Include="StageTests.cs" />
     <Compile Include="RendererAssertions.cs" />
