@@ -1,21 +1,22 @@
-﻿using KataNetHack.Console.Input;
+﻿using System;
+using KataNetHack.Console.Input;
 using KataNetHack.Console.PlayerSubsystem;
 
 namespace KataNetHack.Console
 {
     public class GameEngine
     {
-        private readonly IInput _input;
         private readonly Player _player;
         private readonly Renderer.Renderer _renderer;
+        private readonly IMap _map;
 
-        public GameEngine(IInput input, Player player, Renderer.Renderer renderer)
+        public GameEngine(IInput input, Player player, Renderer.Renderer renderer, IMap map)
         {
-            _input = input;
             _player = player;
             _renderer = renderer;
+            _map = map;
 
-            _input.InputReceived += HandleInputReceived;
+            input.InputReceived += HandleInputReceived;
         }
 
         private void HandleInputReceived(InputResult inputResult)
@@ -38,7 +39,19 @@ namespace KataNetHack.Console
                     break;
             }
 
+            if (_map.IsExit(_player.Location.X, _player.Location.Y))
+            {
+                RaiseFinished();
+            }
+
             _renderer.Render(new Renderable[0]);
+        }
+
+        public event EventHandler<EventArgs> Finished;
+
+        private void RaiseFinished()
+        {
+            Finished?.Invoke(this, EventArgs.Empty);
         }
     }
 }

@@ -8,8 +8,7 @@ namespace KataNetHack.Tests
     {
         public EmptyTenByTenMap()
             : base(new ListMatrix(Enumerable.Range(0, 100).Select(number => ' ')))
-        {
-            
+        {   
         }
     }
 }
