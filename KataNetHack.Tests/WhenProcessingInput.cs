@@ -72,5 +72,20 @@ namespace KataNetHack.Tests
                 .Should()
                 .BeTrue();
         }
+
+        [Fact]
+        public void GivenAWallIsNorthOfTheUserAndTheUserMovesNorthThenTheLocationRemainsTheSame()
+        {
+            _player.Location.X = 2;
+            _player.Location.Y = 2;
+            var originalLocation = _player.Location.Clone();
+
+            _input.SendInput(InputResult.Up);
+
+            _player
+                .Location
+                .Should()
+                .Be(originalLocation);
+        }
     }
 }
