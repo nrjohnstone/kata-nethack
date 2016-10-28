@@ -8,14 +8,17 @@ namespace KataNetHack.Console
         static void Main(string[] args)
         {
             var input = new Input.Input();
-            var player = new Player(0, 0);
+            var player = new Player(5, 5);
 
             var stageOne = new Stage1();
-            var renderer = new Renderer.Renderer(stageOne.LoadMap());
+            var map = stageOne.LoadMap();
+            var renderer = new Renderer.Renderer(map);
 
-            var engine = new GameEngine(input, player, renderer);
+            var continuePlaying = true;
+            var engine = new GameEngine(input, player, renderer, map);
+            engine.Finished += (sender, eventArgs) => continuePlaying = false;
 
-            while (true)
+            while (continuePlaying)
             {
                 input.PollForInput();
             }

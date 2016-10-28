@@ -2,6 +2,7 @@
 using FluentAssertions;
 using KataNetHack.Console;
 using KataNetHack.Console.Input;
+using KataNetHack.Console.Maps;
 using KataNetHack.Console.PlayerSubsystem;
 using KataNetHack.Console.Renderer;
 using Xunit;
@@ -13,14 +14,16 @@ namespace KataNetHack.Tests
         private readonly InputDouble _input;
         private readonly Renderer _renderer;
         private readonly Player _player;
+        private readonly GameEngine _engine;
 
         public WhenProcessingInput()
         {
             _input = new InputDouble();
-            _renderer = new Renderer(new EmptyTenByTenMap());
-            _player = new Player(0, 0);
+            var map = new Stage1().LoadMap();
+            _renderer = new Renderer(map);
+            _player = new Player(5, 5);
 
-            new GameEngine(_input, _player, _renderer);
+            _engine = new GameEngine(_input, _player, _renderer, map);
         }
 
         [Theory]
@@ -51,6 +54,23 @@ namespace KataNetHack.Tests
             output
                 .Should()
                 .HaveCount(10);
+        }
+
+        [Fact]
+        public void GivenThePlayerMovesToExitThenTheGameEnds()
+        {
+            var finishedEventWasRaised = false;
+            _engine.Finished += (sender, args) => finishedEventWasRaised = true;
+
+            // The exit of the Stage1 map is at 9,9 so put the player at 8,9 and move right
+            _player.Location.X = 8;
+            _player.Location.Y = 9;
+            
+            _input.SendInput(InputResult.Right);
+
+            finishedEventWasRaised
+                .Should()
+                .BeTrue();
         }
     }
 }
