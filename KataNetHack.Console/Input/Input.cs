@@ -16,16 +16,16 @@ namespace KataNetHack.Console.Input
             switch(key.Key)
             {
                 case ConsoleKey.W:
-                    inputReceived = InputResult.Up;
+                    inputReceived = InputResult.North;
                     break;
                 case ConsoleKey.A:
-                    inputReceived = InputResult.Left;
+                    inputReceived = InputResult.West;
                     break;
                 case ConsoleKey.S:
-                    inputReceived = InputResult.Down;
+                    inputReceived = InputResult.South;
                     break;
                 case ConsoleKey.D:
-                    inputReceived = InputResult.Right;
+                    inputReceived = InputResult.East;
                     break;
                 default:
                     inputReceived = InputResult.Invalid;

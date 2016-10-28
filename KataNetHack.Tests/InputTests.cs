@@ -12,10 +12,10 @@ namespace KataNetHack.Tests
     public class InputTests
     {
         [Theory]
-        [InlineData(ConsoleKey.W, InputResult.Up)]
-        [InlineData(ConsoleKey.A, InputResult.Left)]
-        [InlineData(ConsoleKey.S, InputResult.Down)]
-        [InlineData(ConsoleKey.D, InputResult.Right)]
+        [InlineData(ConsoleKey.W, InputResult.North)]
+        [InlineData(ConsoleKey.A, InputResult.West)]
+        [InlineData(ConsoleKey.S, InputResult.South)]
+        [InlineData(ConsoleKey.D, InputResult.East)]
         public void PollForInput_ValidInput_FireEvent(ConsoleKey key, InputResult expectedResult)
         {
             Input sut = new Input();

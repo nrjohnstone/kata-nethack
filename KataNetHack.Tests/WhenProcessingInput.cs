@@ -28,10 +28,10 @@ namespace KataNetHack.Tests
         }
 
         [Theory]
-        [InlineData(InputResult.Up)]
-        [InlineData(InputResult.Left)]
-        [InlineData(InputResult.Down)]
-        [InlineData(InputResult.Right)]
+        [InlineData(InputResult.North)]
+        [InlineData(InputResult.West)]
+        [InlineData(InputResult.South)]
+        [InlineData(InputResult.East)]
         public void GivenInputToMoveThenThePlayerLocationIsUpdated(InputResult inputResult)
         {
             var originalPosition = _player.Location.Clone();
@@ -50,7 +50,7 @@ namespace KataNetHack.Tests
             var output = new List<string>();
             _renderer.WriteLine = line => output.Add(line);
 
-            _input.SendInput(InputResult.Up);
+            _input.SendInput(InputResult.North);
 
             output
                 .Should()
@@ -67,7 +67,7 @@ namespace KataNetHack.Tests
             _player.Location.X = 8;
             _player.Location.Y = 9;
             
-            _input.SendInput(InputResult.Right);
+            _input.SendInput(InputResult.East);
 
             finishedEventWasRaised
                 .Should()

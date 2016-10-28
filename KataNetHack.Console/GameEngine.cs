@@ -25,16 +25,16 @@ namespace KataNetHack.Console
 
             switch (inputResult)
             {
-                case InputResult.Up:
+                case InputResult.North:
                     _player.MovedNorth();
                     break;
-                case InputResult.Down:
+                case InputResult.South:
                     _player.MovedSouth();
                     break;
-                case InputResult.Left:
+                case InputResult.West:
                     _player.MovedWest();
                     break;
-                case InputResult.Right:
+                case InputResult.East:
                     _player.MovedEast();
                     break;
                 default:

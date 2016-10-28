@@ -3,9 +3,9 @@
     public enum InputResult
     {
         Invalid,
-        Up,
-        Down,
-        Left,
-        Right
+        North,
+        South,
+        West,
+        East
     }
 }
