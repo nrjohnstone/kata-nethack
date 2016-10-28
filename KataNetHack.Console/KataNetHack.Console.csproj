@@ -52,7 +52,10 @@
     <Compile Include="Input\InputResult.cs" />
     <Compile Include="Maps\MapReader.cs" />
     <Compile Include="Maps\Stage1.cs" />
+    <Compile Include="IHaveLocation.cs" />
+    <Compile Include="Location.cs" />
     <Compile Include="PlayerSubsystem\Player.cs" />
+    <Compile Include="Renderable.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -61,6 +64,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Maps\Map1.txt" />
+  </ItemGroup>
+  <ItemGroup>
     <Folder Include="Renderer\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
