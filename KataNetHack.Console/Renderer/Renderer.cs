@@ -11,7 +11,7 @@ namespace KataNetHack.Console.Renderer
         private const int MAP_COLUMN_COUNT = 10;
         private const char WALL_CHARACTER = '█';
         private const char PASSAGEWAY_CHARACTER = ' ';
-        private const char EXIT_CHARACTER = '◌';
+        private const char EXIT_CHARACTER = '*';
 
         private readonly IMap _map;
 

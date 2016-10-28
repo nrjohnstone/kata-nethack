@@ -13,7 +13,7 @@ namespace KataNetHack.Tests
         private const int MAP_ROW_COUNT = 10;
         private const int MAP_COLUMN_COUNT = 10;
         private const char WALL_CELL = '█';
-        private const char EXIT_CELL = '◌';
+        private const char EXIT_CELL = '*';
 
         private IEnumerable<Renderable> NoRenderables() => new Renderable[0];
 

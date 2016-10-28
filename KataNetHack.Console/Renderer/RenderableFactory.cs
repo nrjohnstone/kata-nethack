@@ -4,7 +4,7 @@ namespace KataNetHack.Console.Renderer
 {
     public class RenderableFactory
     {
-        public const char PLAYER_REPRESENTATION = '☺';
+        public const char PLAYER_REPRESENTATION = '@';
         public const int PLAYER_ZINDEX = 10;
 
         public Renderable CreateRenderable(Player player)
