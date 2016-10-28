@@ -22,11 +22,11 @@ namespace KataNetHack.Console.Renderer
 
         public void Render()
         {
-            for(int row = 0;row < MAP_ROW_COUNT;row++)
+            for(int row = 1; row <= MAP_ROW_COUNT; row++)
             {
                 var builder = new StringBuilder();
 
-                for(var column = 0; column < MAP_COLUMN_COUNT; column++)
+                for(var column = 1; column <= MAP_COLUMN_COUNT; column++)
                 {
                     if(_map.GetElementType(column, row) == ElementType.Wall)
                     {

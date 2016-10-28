@@ -41,7 +41,7 @@ namespace KataNetHack.Tests
         {
             var builder = new RendererBuilder();
 
-            var sut = builder.WithWallAt(0, 0)
+            var sut = builder.WithWallAt(1, 1)
                              .Build();
 
             sut.Render();
@@ -57,7 +57,7 @@ namespace KataNetHack.Tests
         {
             var builder = new RendererBuilder();
 
-            var sut = builder.WithCellAt(3, 2, elementType)
+            var sut = builder.WithCellAt(4, 3, elementType)
                              .Build();
 
             sut.Render();
