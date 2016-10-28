@@ -81,7 +81,7 @@ namespace KataNetHack.Tests
             _player.Location.Y = 2;
             var originalLocation = _player.Location.Clone();
 
-            _input.SendInput(InputResult.Up);
+            _input.SendInput(InputResult.North);
 
             _player
                 .Location
