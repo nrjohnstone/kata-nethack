@@ -44,6 +44,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GameEngine.cs" />
     <Compile Include="Input\IInput.cs" />
     <Compile Include="Input\IInputPoller.cs" />
     <Compile Include="Maps\ListMatrix.cs" />
@@ -61,6 +62,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Maps\Map1.txt" />
+  </ItemGroup>
+  <ItemGroup>
     <Folder Include="Renderer\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

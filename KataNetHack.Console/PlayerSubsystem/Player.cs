@@ -18,6 +18,7 @@ namespace KataNetHack.Console.PlayerSubsystem
 
         public void MoveNorth()
         {
+            Position = new Point(Position.X - 1, Position.Y);
         }
 
         public void MoveSouth()
