@@ -21,6 +21,7 @@ namespace KataNetHack.Tests
             _input = new InputDouble();
             var map = new Stage1().LoadMap();
             _renderer = new Renderer(map);
+            _renderer.ClearScreen = () => { };
             _player = new Player(5, 5);
 
             _engine = new GameEngine(_input, _player, _renderer, map);
@@ -71,6 +72,21 @@ namespace KataNetHack.Tests
             finishedEventWasRaised
                 .Should()
                 .BeTrue();
+        }
+
+        [Fact]
+        public void GivenAWallIsNorthOfTheUserAndTheUserMovesNorthThenTheLocationRemainsTheSame()
+        {
+            _player.Location.X = 2;
+            _player.Location.Y = 2;
+            var originalLocation = _player.Location.Clone();
+
+            _input.SendInput(InputResult.Up);
+
+            _player
+                .Location
+                .Should()
+                .Be(originalLocation);
         }
     }
 }

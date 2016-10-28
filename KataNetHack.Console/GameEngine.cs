@@ -21,6 +21,8 @@ namespace KataNetHack.Console
 
         private void HandleInputReceived(InputResult inputResult)
         {
+            var originalPosition = (Location)_player.Location.Clone();
+
             switch (inputResult)
             {
                 case InputResult.Up:
@@ -37,6 +39,12 @@ namespace KataNetHack.Console
                     break;
                 default:
                     break;
+            }
+
+            if (!_map.CanMoveTo(_player.Location.X, _player.Location.Y))
+            {
+                _player.Location.X = originalPosition.X;
+                _player.Location.Y = originalPosition.Y;
             }
 
             if (_map.IsExit(_player.Location.X, _player.Location.Y))
