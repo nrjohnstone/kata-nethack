@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 
 using KataNetHack.Console;
@@ -12,6 +13,7 @@ namespace KataNetHack.Tests
         private Mock<IMap> Map { get; } = new Mock<IMap>();
         public IReadOnlyList<string> OutputLines => _lines;
         private readonly List<string> _lines = new List<string>();
+        private Action _clearScreenAction = () => { };
 
         public RendererBuilder()
         {
@@ -35,11 +37,19 @@ namespace KataNetHack.Tests
             return this;
         }
 
+        public RendererBuilder WhenClearingScreenDo(Action action)
+        {
+            _clearScreenAction = action;
+
+            return this;
+        }
+
         public Renderer Build()
         {
             return new Renderer(Map.Object)
                    {
-                       WriteLine = line => _lines.Add(line)
+                       WriteLine = line => _lines.Add(line),
+                       ClearScreen = _clearScreenAction
                    };
         }
     }

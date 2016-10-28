@@ -13,7 +13,7 @@ namespace KataNetHack.Tests
         private const int MAP_ROW_COUNT = 10;
         private const int MAP_COLUMN_COUNT = 10;
         private const char WALL_CELL = '█';
-        private const char EXIT_CELL = '◌';
+        private const char EXIT_CELL = '*';
 
         private IEnumerable<Renderable> NoRenderables() => new Renderable[0];
 
@@ -151,6 +151,24 @@ namespace KataNetHack.Tests
             var leftPassageWay = "  ";
             var rightPassageWay = "       ";
             builder.OutputLines[1].Should().Be(leftPassageWay + representation + rightPassageWay);
+        }
+
+        [Fact]
+        public void Render_Always_ClearsScreenBeforeRendering()
+        {
+            var builder = new RendererBuilder();
+            bool clearScreenCalled = false;
+
+            var sut = builder.WhenClearingScreenDo(() =>
+                                                   {
+                                                       builder.OutputLines.Should().BeEmpty("ClearScreen should be called first");
+                                                       clearScreenCalled = true;
+                                                   })
+                             .Build();
+
+            sut.Render(NoRenderables());
+
+            clearScreenCalled.Should().BeTrue();
         }
 
         private Renderable CreateRenderable(int x, int y, char representation, int zindex) =>

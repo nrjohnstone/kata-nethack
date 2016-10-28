@@ -11,11 +11,12 @@ namespace KataNetHack.Console.Renderer
         private const int MAP_COLUMN_COUNT = 10;
         private const char WALL_CHARACTER = '█';
         private const char PASSAGEWAY_CHARACTER = ' ';
-        private const char EXIT_CHARACTER = '◌';
+        private const char EXIT_CHARACTER = '*';
 
         private readonly IMap _map;
 
         public Action<string> WriteLine = System.Console.WriteLine;
+        public Action ClearScreen = System.Console.Clear;
 
         public Renderer(IMap map)
         {
@@ -24,6 +25,8 @@ namespace KataNetHack.Console.Renderer
 
         public void Render(IEnumerable<Renderable> items)
         {
+            ClearScreen();
+
             for(int row = 1; row <= MAP_ROW_COUNT; row++)
             {
                 var builder = new StringBuilder();
