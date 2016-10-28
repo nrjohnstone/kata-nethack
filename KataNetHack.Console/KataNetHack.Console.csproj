@@ -59,6 +59,7 @@
     <Compile Include="Renderable.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Renderer\RenderableFactory.cs" />
     <Compile Include="Renderer\Renderer.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -68,6 +69,7 @@
     <Content Include="Maps\Map1.txt" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Renderer" />
     <Folder Include="Renderer\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
