@@ -12,28 +12,32 @@ namespace KataNetHack.Tests
     {
         private readonly InputDouble _input;
         private readonly Renderer _renderer;
-        private readonly Location _startingPosition;
         private readonly Player _player;
 
         public WhenProcessingInput()
         {
             _input = new InputDouble();
             _renderer = new Renderer(new EmptyTenByTenMap());
-            _startingPosition = new Location(0, 0);
-            _player = new Player(_startingPosition.X, _startingPosition.Y);
+            _player = new Player(0, 0);
 
             new GameEngine(_input, _player, _renderer);
         }
 
-        [Fact]
-        public void GivenInputToMoveThenThePlayerLocationIsUpdated()
+        [Theory]
+        [InlineData(InputResult.Up)]
+        [InlineData(InputResult.Left)]
+        [InlineData(InputResult.Down)]
+        [InlineData(InputResult.Right)]
+        public void GivenInputToMoveThenThePlayerLocationIsUpdated(InputResult inputResult)
         {
-            _input.SendInput(InputResult.Up);
+            var originalPosition = _player.Location.Clone();
+
+            _input.SendInput(inputResult);
 
             _player
                 .Location
                 .Should()
-                .NotBe(_startingPosition);
+                .NotBe(originalPosition);
         }
 
         [Fact]
