@@ -7,11 +7,13 @@ namespace KataNetHack.Console
     {
         private readonly IInput _input;
         private readonly Player _player;
+        private readonly Renderer.Renderer _renderer;
 
-        public GameEngine(IInput input, Player player)
+        public GameEngine(IInput input, Player player, Renderer.Renderer renderer)
         {
             _input = input;
             _player = player;
+            _renderer = renderer;
 
             _input.InputReceived += HandleInputReceived;
         }
@@ -21,11 +23,13 @@ namespace KataNetHack.Console
             switch (inputResult)
             {
                 case InputResult.Up:
-                    _player.MoveNorth();
+                    _player.MovedNorth();
                     break;
                 default:
                     break;
             }
+
+            _renderer.Render();
         }
     }
 }
