@@ -1,35 +1,28 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace KataNetHack.Console.PlayerSubsystem
+﻿namespace KataNetHack.Console.PlayerSubsystem
 {
-    public class Player
+    public class Player: IHaveLocation
     {
-        public Player(Point startingPosition)
+        public Location Location { get; private set; }
+
+        public Player(int x, int y)
         {
-            Position = startingPosition;
+            Location = new Location(x, y);
+        }
+        
+        public void MovedNorth()
+        {
+            Location.Y += 1;
         }
 
-        public Point Position { get; private set; }
-
-        public void MoveNorth()
-        {
-            Position = new Point(Position.X - 1, Position.Y);
-        }
-
-        public void MoveSouth()
-        {
-        }
-
-        public void MoveWest()
+        public void MovedSouth()
         {
         }
 
-        public void MoveEast()
+        public void MovedWest()
+        {
+        }
+
+        public void MovedEast()
         {
         }
     }
