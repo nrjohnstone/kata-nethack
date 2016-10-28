@@ -1,6 +1,4 @@
-﻿using KataNetHack.Console.PlayerSubsystem;
-
-namespace KataNetHack.Console
+﻿namespace KataNetHack.Console
 {
     public interface IHaveLocation
     {
