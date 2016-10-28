@@ -87,17 +87,20 @@
   </Choose>
   <ItemGroup>
     <Compile Include="EmptyTenByTenMap.cs" />
+    <Compile Include="GameEngineBuilder.cs" />
     <Compile Include="InputDouble.cs" />
     <Compile Include="ListMatrixTests.cs" />
     <Compile Include="MapTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RenderableFactoryTests.cs" />
+    <Compile Include="RendererDouble.cs" />
     <Compile Include="StageItemBuilder.cs" />
     <Compile Include="StageTests.cs" />
     <Compile Include="RendererAssertions.cs" />
     <Compile Include="RendererBuilder.cs" />
     <Compile Include="RendererTests.cs" />
     <Compile Include="WhenProcessingInput.cs" />
+    <Compile Include="WhenRenderingTheGame.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="InputTests.cs" />
