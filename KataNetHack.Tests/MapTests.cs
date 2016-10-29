@@ -152,10 +152,28 @@ namespace KataNetHack.Tests
         public void GetElementType_OnAPassageWay_ReturnsPassageWay()
         {
             var sut = Sut(10, 10);
-            var pic = sut.ToString();
             var result = sut.GetElementType(5, 5);
 
             result.Should().Be(ElementType.PassageWay);
+        }
+
+        [Fact]
+        public void GetElementType_WhenSetToX2Y2_LocationIsX2Y2()
+        {
+            var sut = Sut(10, 10);
+            var result = sut.GetElementType(2, 2);
+            var pic = sut.ToString();
+            result.Should().Be(ElementType.SpawnPoint);
+        }
+
+        [Fact]
+        public void SpawnLocation_WhenSetToX2Y2_LocationIsX2Y2()
+        {
+            var sut = Sut(10, 10);
+            var result = sut.SpawnLocation();
+            var pic = sut.ToString();
+            Assert.Equal(2, result.X);
+            Assert.Equal(2, result.Y);
         }
     }
 }

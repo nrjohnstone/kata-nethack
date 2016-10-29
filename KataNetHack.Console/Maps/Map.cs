@@ -10,6 +10,7 @@ namespace KataNetHack.Console
         bool CanMoveTo(int column, int row);
         bool IsExit(int column, int row);
         ElementType GetElementType(int column, int row);
+        Location SpawnLocation();
     }
 
     public class Map : IMap
@@ -72,6 +73,12 @@ namespace KataNetHack.Console
             return ElementAt(column, row).Type;
         }
 
+        public Location SpawnLocation()
+        {
+            var loc = _matrix.SpawnLocation();
+            return loc;
+        }
+
         public override string ToString()
         {
             return _matrix.ToString();
@@ -87,6 +94,6 @@ namespace KataNetHack.Console
 
     public enum ElementType
     {
-        Wall, PassageWay, Exit
+        Wall, PassageWay, Exit, SpawnPoint
     }
 }

@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading;
 
 namespace KataNetHack.Console.Maps
 {
@@ -37,22 +36,50 @@ namespace KataNetHack.Console.Maps
         
         public override Element ElementAt(int column, int row)
         {
-            int position = Position(row, column);
+            int position = Position(row, column, Width, Capacity);
             var item = _mapItems[position];
             var tileType = GetTileType(item);
             return new Element() { Type = tileType };
         }
 
-        
+        public override Location SpawnLocation()
+        {
+            int pos = -1;
+            pos = Array.IndexOf(_mapItems, ElementConstants.SpawnPoint);
+
+            if (pos == -1)
+                pos = Array.IndexOf(_mapItems, ElementConstants.Passageway);
+
+            if (pos == -1)
+                pos = 0;
+
+            return LocationOfPosition(pos);
+        }
+
+        private Location LocationOfPosition(int position)
+        {
+            //calculation is zero based
+            int y = (position/Width);
+            int x = position - (y*Width);
+
+            return new Location(++x, ++y);
+        }
+
         public int Position(int column, int row)
+        {
+            return Position(column, row, Width, Capacity);
+        }
+
+
+        public static int Position(int column, int row, int width, int capacity)
         {
             int x = column - 1;
             int y = row - 1;
             int position = 0;
 
-            position = (y * Width) + (x);
+            position = (y * width) + (x);
 
-            if (position >= Capacity)
+            if (position >= capacity)
                 throw new ArgumentOutOfRangeException();
 
             return position;
@@ -86,10 +113,12 @@ namespace KataNetHack.Console.Maps
         {
             if (item == '=') { return ElementType.Wall;}
             if (item == '*') { return ElementType.Exit;}
+            if (item == '!') { return ElementType.SpawnPoint; }
 
             return ElementType.PassageWay;
 
         }
 
+        public abstract Location SpawnLocation();
     }
 }

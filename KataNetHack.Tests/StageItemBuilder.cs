@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Globalization;
+using KataNetHack.Console.Maps;
 
 namespace KataNetHack.Tests
 {
@@ -7,6 +8,7 @@ namespace KataNetHack.Tests
     {
         private int NumberItems => _width*_height;
         private int _exitPosition;
+        private int _startPosition;
         private int _width = 10;
         private int _height = 10;
 
@@ -22,8 +24,18 @@ namespace KataNetHack.Tests
             return this;
         }
 
+        public StageItemBuilder WithStartPosition(int x, int y)
+        {
+            _startPosition = ListMatrix.Position(x, y, _width, NumberItems);
+            return this;
+        }
+
         public IEnumerable<char> Build()
         {
+            if (_startPosition == 0)
+            {
+                _startPosition = CalculateAnStartPoistion();
+            }
             if (_exitPosition == 0)
             {
                 _exitPosition = CalculateAnExitPoistion();
@@ -38,12 +50,25 @@ namespace KataNetHack.Tests
                 {
                     yield return '*';
                 }
+                else if (i == _startPosition)
+                {
+                    yield return '!';
+                }
                 else
                 {
                     yield return ' ';
                 }
             }
 
+        }
+
+        private int CalculateAnStartPoistion()
+        {
+            if (_height <= 1 && _width > 2)
+                return 0;
+            if (_height <= 1 && _width > 2)
+                return 1;
+            return _width + 1;
         }
 
         private int CalculateAnExitPoistion()
