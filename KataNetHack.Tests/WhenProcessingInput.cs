@@ -68,8 +68,8 @@ namespace KataNetHack.Tests
             _engine.Finished += (sender, args) => finishedEventWasRaised = true;
 
             // The exit of the Stage1 map is at 9,9 so put the player at 8,9 and move right
-            _player.Location.X = 8;
-            _player.Location.Y = 9;
+            _player.Location.Column = 8;
+            _player.Location.Row = 9;
             
             _input.SendInput(InputResult.East);
 
@@ -81,8 +81,8 @@ namespace KataNetHack.Tests
         [Fact]
         public void GivenAWallIsNorthOfTheUserAndTheUserMovesNorthThenTheLocationRemainsTheSame()
         {
-            _player.Location.X = 2;
-            _player.Location.Y = 2;
+            _player.Location.Column = 2;
+            _player.Location.Row = 2;
             var originalLocation = _player.Location.Clone();
 
             _input.SendInput(InputResult.North);

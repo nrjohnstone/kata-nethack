@@ -19,7 +19,7 @@ namespace KataNetHack.Tests
             var engine = new GameEngineBuilder()
                 .WithInput(input)
                 .WithRenderer(renderer)
-                .WithPlayer(new Player(5, 5))
+                .WithPlayer(new Player(map.SpawnLocation()))
                 .Build();
 
             input.SendInput(InputResult.East);

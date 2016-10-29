@@ -4,29 +4,29 @@
     {
         public Location Location { get; private set; }
 
-        public Player(int x, int y)
+        public Player(Location startLocation)
         {
-            Location = new Location(x, y);
+            Location = startLocation;
         }
         
         public void MovedNorth()
         {
-            --Location.Y;
+            --Location.Row;
         }
 
         public void MovedSouth()
         {
-            ++Location.Y;
+            ++Location.Row;
         }
 
         public void MovedWest()
         {
-            --Location.X;
+            --Location.Column;
         }
 
         public void MovedEast()
         {
-            ++Location.X;
+            ++Location.Column;
         }
     }
 }

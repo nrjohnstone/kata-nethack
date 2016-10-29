@@ -2,9 +2,9 @@
 {
     public class ElementConstants
     {
-        public static char Wall = '=';
-        public static char Passageway = ' ';
-        public static char Exit = '*';
-        public static char SpawnPoint = '!';
+        public const char Wall = '=';
+        public const char Passageway = ' ';
+        public const char Exit = '*';
+        public const char SpawnPoint = '!';
     }
 }

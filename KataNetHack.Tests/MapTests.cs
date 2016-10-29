@@ -172,8 +172,8 @@ namespace KataNetHack.Tests
             var sut = Sut(10, 10);
             var result = sut.SpawnLocation();
             var pic = sut.ToString();
-            Assert.Equal(2, result.X);
-            Assert.Equal(2, result.Y);
+            Assert.Equal(2, result.Column);
+            Assert.Equal(2, result.Row);
         }
     }
 }

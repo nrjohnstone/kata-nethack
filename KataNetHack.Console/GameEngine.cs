@@ -44,13 +44,13 @@ namespace KataNetHack.Console
                     break;
             }
 
-            if (!_map.CanMoveTo(_player.Location.X, _player.Location.Y))
+            if (!_map.CanMoveTo(_player.Location.Column, _player.Location.Row))
             {
-                _player.Location.X = originalPosition.X;
-                _player.Location.Y = originalPosition.Y;
+                _player.Location.Column = originalPosition.Column;
+                _player.Location.Row = originalPosition.Row;
             }
 
-            if (_map.IsExit(_player.Location.X, _player.Location.Y))
+            if (_map.IsExit(_player.Location.Column, _player.Location.Row))
             {
                 RaiseFinished();
             }

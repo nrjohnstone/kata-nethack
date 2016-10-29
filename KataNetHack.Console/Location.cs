@@ -8,7 +8,7 @@ namespace KataNetHack.Console
         {
             if (ReferenceEquals(null, other)) return false;
             if (ReferenceEquals(this, other)) return true;
-            return X == other.X && Y == other.Y;
+            return Column == other.Column && Row == other.Row;
         }
 
         public override bool Equals(object obj)
@@ -23,13 +23,13 @@ namespace KataNetHack.Console
         {
             unchecked
             {
-                return (X*397) ^ Y;
+                return (Column*397) ^ Row;
             }
         }
 
         public object Clone()
         {
-            return new Location(X, Y);
+            return new Location(Column, Row);
         }
 
         public static bool operator ==(Location left, Location right)
@@ -42,13 +42,13 @@ namespace KataNetHack.Console
             return !Equals(left, right);
         }
 
-        public int X { get; set; }
-        public int Y { get; set; }
+        public int Column { get; set; }
+        public int Row { get; set; }
 
-        public Location(int x, int y)
+        public Location(int column, int row)
         {
-            X = x;
-            Y = y;
+            Column = column;
+            Row = row;
         }
     }
 }

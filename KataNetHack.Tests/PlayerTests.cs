@@ -11,8 +11,8 @@ namespace KataNetHack.Tests
             int x = 2;
             int y = 2;
             var player = new Player(x, y);
-            Assert.Equal(2, player.Location.X);
-            Assert.Equal(2, player.Location.Y);
+            Assert.Equal(2, player.Location.Column);
+            Assert.Equal(2, player.Location.Row);
         }
 
         [Fact]
@@ -22,7 +22,7 @@ namespace KataNetHack.Tests
             int y = 2;
             var player = new Player(x, y);
             player.MovedNorth();
-            Assert.Equal(1, player.Location.Y);
+            Assert.Equal(1, player.Location.Row);
         }
 
         [Fact]
@@ -32,7 +32,7 @@ namespace KataNetHack.Tests
             int y = 2;
             var player = new Player(x, y);
             player.MovedNorth();
-            Assert.Equal(2, player.Location.X);
+            Assert.Equal(2, player.Location.Column);
         }
 
         [Fact]
@@ -42,7 +42,7 @@ namespace KataNetHack.Tests
             int y = 2;
             var player = new Player(x, y);
             player.MovedSouth();
-            Assert.Equal(3, player.Location.Y);
+            Assert.Equal(3, player.Location.Row);
         }
 
         [Fact]
@@ -52,7 +52,7 @@ namespace KataNetHack.Tests
             int y = 2;
             var player = new Player(x, y);
             player.MovedSouth();
-            Assert.Equal(2, player.Location.X);
+            Assert.Equal(2, player.Location.Column);
         }
 
         [Fact]
@@ -62,7 +62,7 @@ namespace KataNetHack.Tests
             int y = 2;
             var player = new Player(x, y);
             player.MovedWest();
-            Assert.Equal(1, player.Location.X);
+            Assert.Equal(1, player.Location.Column);
         }
 
         [Fact]
@@ -72,7 +72,7 @@ namespace KataNetHack.Tests
             int y = 2;
             var player = new Player(x, y);
             player.MovedWest();
-            Assert.Equal(2, player.Location.Y);
+            Assert.Equal(2, player.Location.Row);
         }
 
         [Fact]
@@ -82,7 +82,7 @@ namespace KataNetHack.Tests
             int y = 2;
             var player = new Player(x, y);
             player.MovedEast();
-            Assert.Equal(3, player.Location.X);
+            Assert.Equal(3, player.Location.Column);
         }
 
         [Fact]
@@ -92,7 +92,7 @@ namespace KataNetHack.Tests
             int y = 2;
             var player = new Player(x, y);
             player.MovedEast();
-            Assert.Equal(2, player.Location.Y);
+            Assert.Equal(2, player.Location.Row);
         }
     }
 }

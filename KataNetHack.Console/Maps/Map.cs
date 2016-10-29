@@ -11,6 +11,8 @@ namespace KataNetHack.Console
         bool IsExit(int column, int row);
         ElementType GetElementType(int column, int row);
         Location SpawnLocation();
+        int Width { get; }
+        int Height { get; }
     }
 
     public class Map : IMap

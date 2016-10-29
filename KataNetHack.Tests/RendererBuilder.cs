@@ -19,6 +19,8 @@ namespace KataNetHack.Tests
         {
             Map.Setup(obj => obj.GetElementType(It.IsAny<int>(), It.IsAny<int>()))
                .Returns(ElementType.PassageWay);
+            Map.Setup(obj => obj.Width).Returns(10);
+            Map.Setup(obj => obj.Height).Returns(10);
         }
 
         public RendererBuilder WithWallAt(int x, int y)

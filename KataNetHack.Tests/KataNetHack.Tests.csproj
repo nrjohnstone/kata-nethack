@@ -88,6 +88,7 @@
     <Compile Include="GameEngineBuilder.cs" />
     <Compile Include="InputDouble.cs" />
     <Compile Include="ListMatrixTests.cs" />
+    <Compile Include="LocationTests.cs" />
     <Compile Include="MapTests.cs" />
     <Compile Include="PlayerTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

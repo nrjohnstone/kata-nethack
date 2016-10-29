@@ -7,8 +7,8 @@ namespace KataNetHack.Console.Renderer
 {
     public class Renderer
     {
-        private const int MAP_ROW_COUNT = 10;
-        private const int MAP_COLUMN_COUNT = 10;
+        //private const int MAP_ROW_COUNT = 10;
+        //private const int MAP_COLUMN_COUNT = 10;
         private const char WALL_CHARACTER = '█';
         private const char PASSAGEWAY_CHARACTER = ' ';
         private const char EXIT_CHARACTER = '*';
@@ -27,11 +27,11 @@ namespace KataNetHack.Console.Renderer
         {
             ClearScreen();
 
-            for(int row = 1; row <= MAP_ROW_COUNT; row++)
+            for(int row = 1; row <= _map.Height; row++)
             {
                 var builder = new StringBuilder();
 
-                for(var column = 1; column <= MAP_COLUMN_COUNT; column++)
+                for(var column = 1; column <= _map.Width; column++)
                 {
                     if(_map.GetElementType(column, row) == ElementType.Wall)
                     {
@@ -44,8 +44,8 @@ namespace KataNetHack.Console.Renderer
                     else
                     {
                         var item = items.OrderByDescending(i => i.ZIndex)
-                                        .FirstOrDefault(i => i.Source.Location.X == column &&
-                                                             i.Source.Location.Y == row);
+                                        .FirstOrDefault(i => i.Source.Location.Column == column &&
+                                                             i.Source.Location.Row == row);
 
                         if(item != null)
                         {
