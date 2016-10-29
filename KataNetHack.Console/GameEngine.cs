@@ -1,6 +1,7 @@
 ﻿using System;
 using KataNetHack.Console.Input;
 using KataNetHack.Console.PlayerSubsystem;
+using KataNetHack.Console.Renderer;
 
 namespace KataNetHack.Console
 {
@@ -9,12 +10,14 @@ namespace KataNetHack.Console
         private readonly Player _player;
         private readonly Renderer.Renderer _renderer;
         private readonly IMap _map;
+        private readonly RenderableFactory _renderableFactory;
 
-        public GameEngine(IInput input, Player player, Renderer.Renderer renderer, IMap map)
+        public GameEngine(IInput input, Player player, Renderer.Renderer renderer, IMap map, RenderableFactory renderableFactory)
         {
             _player = player;
             _renderer = renderer;
             _map = map;
+            _renderableFactory = renderableFactory;
 
             input.InputReceived += HandleInputReceived;
         }
@@ -52,7 +55,8 @@ namespace KataNetHack.Console
                 RaiseFinished();
             }
 
-            _renderer.Render(new Renderable[0]);
+            var renderables = _renderableFactory.CreateRenderable(_player);
+            _renderer.Render(new [] { renderables });
         }
 
         public event EventHandler<EventArgs> Finished;

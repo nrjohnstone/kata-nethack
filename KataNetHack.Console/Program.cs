@@ -1,5 +1,6 @@
 ﻿using KataNetHack.Console.Maps;
 using KataNetHack.Console.PlayerSubsystem;
+using KataNetHack.Console.Renderer;
 
 namespace KataNetHack.Console
 {
@@ -15,7 +16,7 @@ namespace KataNetHack.Console
             var renderer = new Renderer.Renderer(map);
 
             var continuePlaying = true;
-            var engine = new GameEngine(input, player, renderer, map);
+            var engine = new GameEngine(input, player, renderer, map, new RenderableFactory());
             engine.Finished += (sender, eventArgs) => continuePlaying = false;
 
             while (continuePlaying)
