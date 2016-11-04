@@ -22,7 +22,7 @@ namespace KataNetHack.Tests
             var map = new Stage1().LoadMap();
             _renderer = new Renderer(map);
             _renderer.ClearScreen = () => { };
-            _player = new Player(5, 5);
+            _player = new Player(new Location(5, 5));
 
             _engine = new GameEngineBuilder()
                 .WithInput(_input)

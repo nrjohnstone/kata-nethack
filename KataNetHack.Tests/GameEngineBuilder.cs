@@ -9,7 +9,7 @@ namespace KataNetHack.Tests
     public class GameEngineBuilder
     {
         private IInput _input = new InputDouble();
-        private Player _player = new Player(1, 1);
+        private Player _player = null;
         private Console.Renderer.Renderer _renderer;
         private IMap _map;
         private RenderableFactory _renderableFactory = new RenderableFactory();
@@ -25,7 +25,7 @@ namespace KataNetHack.Tests
             {
                 _renderer = new RendererDouble(_map);
             }
-
+            _player = new Player(_map.SpawnLocation());
             return new GameEngine(_input, _player, _renderer, _map, _renderableFactory);
         }
 

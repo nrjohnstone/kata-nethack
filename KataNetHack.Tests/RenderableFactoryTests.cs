@@ -15,7 +15,7 @@ namespace KataNetHack.Tests
         {
             var sut = new RenderableFactory();
 
-            var player = new Player(x: 3, y: 4);
+            var player = new Player(new Location(3, 4));
             Renderable result = sut.CreateRenderable(player);
 
             result.Source.Should().BeSameAs(player);

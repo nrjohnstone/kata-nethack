@@ -1,4 +1,5 @@
-﻿using KataNetHack.Console.PlayerSubsystem;
+﻿using KataNetHack.Console;
+using KataNetHack.Console.PlayerSubsystem;
 using Xunit;
 
 namespace KataNetHack.Tests
@@ -10,9 +11,14 @@ namespace KataNetHack.Tests
         {
             int x = 2;
             int y = 2;
-            var player = new Player(x, y);
+            var player = CreateSut(x, y);
             Assert.Equal(2, player.Location.Column);
             Assert.Equal(2, player.Location.Row);
+        }
+
+        private static Player CreateSut(int x, int y)
+        {
+            return new Player(new Location(x, y));
         }
 
         [Fact]
@@ -20,7 +26,7 @@ namespace KataNetHack.Tests
         {
             int x = 2;
             int y = 2;
-            var player = new Player(x, y);
+            var player = CreateSut(x, y);
             player.MovedNorth();
             Assert.Equal(1, player.Location.Row);
         }
@@ -30,7 +36,7 @@ namespace KataNetHack.Tests
         {
             int x = 2;
             int y = 2;
-            var player = new Player(x, y);
+            var player = CreateSut(x, y);
             player.MovedNorth();
             Assert.Equal(2, player.Location.Column);
         }
@@ -40,7 +46,7 @@ namespace KataNetHack.Tests
         {
             int x = 2;
             int y = 2;
-            var player = new Player(x, y);
+            var player = CreateSut(x, y);
             player.MovedSouth();
             Assert.Equal(3, player.Location.Row);
         }
@@ -50,7 +56,7 @@ namespace KataNetHack.Tests
         {
             int x = 2;
             int y = 2;
-            var player = new Player(x, y);
+            var player = CreateSut(x, y);
             player.MovedSouth();
             Assert.Equal(2, player.Location.Column);
         }
@@ -60,7 +66,7 @@ namespace KataNetHack.Tests
         {
             int x = 2;
             int y = 2;
-            var player = new Player(x, y);
+            var player = CreateSut(x, y);
             player.MovedWest();
             Assert.Equal(1, player.Location.Column);
         }
@@ -70,7 +76,7 @@ namespace KataNetHack.Tests
         {
             int x = 2;
             int y = 2;
-            var player = new Player(x, y);
+            var player = CreateSut(x, y);
             player.MovedWest();
             Assert.Equal(2, player.Location.Row);
         }
@@ -80,7 +86,7 @@ namespace KataNetHack.Tests
         {
             int x = 2;
             int y = 2;
-            var player = new Player(x, y);
+            var player = CreateSut(x, y);
             player.MovedEast();
             Assert.Equal(3, player.Location.Column);
         }
@@ -90,7 +96,7 @@ namespace KataNetHack.Tests
         {
             int x = 2;
             int y = 2;
-            var player = new Player(x, y);
+            var player = CreateSut(x, y);
             player.MovedEast();
             Assert.Equal(2, player.Location.Row);
         }
