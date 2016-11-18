@@ -25,7 +25,11 @@ namespace KataNetHack.Tests
             {
                 _renderer = new RendererDouble(_map);
             }
-            _player = new Player(_map.SpawnLocation());
+            if (_player == null)
+            {
+                _player = new Player(_map.SpawnLocation());
+            }
+            
             return new GameEngine(_input, _player, _renderer, _map, _renderableFactory);
         }
 
