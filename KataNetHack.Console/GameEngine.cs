@@ -55,8 +55,7 @@ namespace KataNetHack.Console
                 RaiseFinished();
             }
 
-            var renderables = _renderableFactory.CreateRenderable(_player);
-            _renderer.Render(new [] { renderables });
+            Draw();
         }
 
         public event EventHandler<EventArgs> Finished;
@@ -64,6 +63,12 @@ namespace KataNetHack.Console
         private void RaiseFinished()
         {
             Finished?.Invoke(this, EventArgs.Empty);
+        }
+
+        public void Draw()
+        {
+            var renderables = _renderableFactory.CreateRenderable(_player);
+            _renderer.Render(new [] { renderables });
         }
     }
 }
