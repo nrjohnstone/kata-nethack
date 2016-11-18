@@ -23,6 +23,7 @@ namespace KataNetHack.Console
 
             while (continuePlaying)
             {
+                engine.Draw();
                 input.PollForInput();
             }
         }
