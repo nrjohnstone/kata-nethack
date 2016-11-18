@@ -22,10 +22,11 @@ namespace KataNetHack.Tests
 
             engine.Draw();
 
-            renderer
-                .Output[1]
-                .Should()
-                .Contain(RenderableFactory.PLAYER_REPRESENTATION.ToString());
+            int zeroBasedRow = map.SpawnLocation().Row - 1;
+            int zeroBasedColumn = map.SpawnLocation().Column - 1;
+            char cellForSpawnLocation = renderer.Output[zeroBasedRow][zeroBasedColumn];
+
+            cellForSpawnLocation.Should().Be(RenderableFactory.PLAYER_REPRESENTATION);
         }
     }
 }
